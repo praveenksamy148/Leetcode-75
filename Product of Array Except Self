@@ -1,0 +1,16 @@
+class Solution {
+public:
+    vector<int> productExceptSelf(vector<int>& nums) {
+        vector<int>leftProduct(size(nums), 1); 
+        //Auxillary array with product of indexes to the left 
+        for(int i = 1; i < nums.size(); i++){
+            leftProduct[i] = nums[i-1] * leftProduct[i-1]; 
+        }
+        int rightProduct = 1; 
+        for(int i = nums.size() - 1; i >= 0; i--){
+            leftProduct[i] *= rightProduct; 
+            rightProduct = rightProduct *nums[i];
+        }
+        return leftProduct; 
+    }
+};
