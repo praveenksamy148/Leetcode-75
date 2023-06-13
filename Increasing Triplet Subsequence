@@ -1,0 +1,23 @@
+class Solution {
+public:
+    bool increasingTriplet(vector<int>& nums) {
+        bool triplet = false;
+        int left = INT_MAX; 
+        int mid = INT_MAX; 
+        //if value greater than mid value then automatically return true
+        for(int i = 0; i < nums.size(); i++){
+            if(nums[i] > mid){
+                triplet = true; 
+            }
+            //if value greater than left but less than mid then reassign mid value
+            else if(nums[i]> left && nums[i] < mid){
+                mid = nums[i]; 
+            }
+            //if value less than left reassign value to be new left
+            else if(nums[i] < left){
+                left = nums[i];
+            }
+        }
+        return triplet; 
+    }
+};
