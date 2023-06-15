@@ -1,0 +1,31 @@
+class Solution {
+public:
+    bool isSubsequence(string s, string t) {
+        if(s.length() == 0){
+            return true; 
+        }
+        int length = s.length() - 1;
+        stack<char>subsequence; 
+        for(int i = t.length() -1 ; i >= 0; i--){
+            if(t[i] == s[length]){
+                subsequence.push(t[i]); 
+                if(length == 0){
+                    break;
+                }
+                length--; 
+            }
+            else{
+                continue;
+            }
+        }
+        string sequence = ""; 
+        while(!subsequence.empty()){
+            sequence += subsequence.top(); 
+            subsequence.pop(); 
+        }
+        if(sequence == s){
+            return true; 
+        }
+        return false; 
+    }
+};
