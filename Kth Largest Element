@@ -1,0 +1,16 @@
+class Solution {
+public:
+    int findKthLargest(vector<int>& nums, int k) {
+        int greaterThan = 0; 
+        //second greatest value means there is only one larger value
+        priority_queue<int>elements; 
+        for(int i = 0; i < nums.size(); i++){
+            elements.push(nums[i]);
+        }
+        while(greaterThan < k-1){
+            elements.pop();
+            greaterThan++;
+        }
+        return elements.top(); 
+    }
+};
