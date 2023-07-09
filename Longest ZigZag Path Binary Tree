@@ -1,0 +1,22 @@
+class Solution {
+public:
+int longestZigZag(TreeNode* root) {
+        int max_length = 0;
+        dfs(root, false, 0, max_length); // Start with root node, not traversing any subtree
+        dfs(root, true, 0, max_length); // Start with root node, traversing right subtree
+        return max_length;
+    }
+    
+    void dfs(TreeNode* node, bool is_right, int length, int& max_length) {
+        if (!node) return;
+        max_length = max(max_length, length); // Update max_length with current ZigZag path length
+        
+        if (is_right) { // Traversing right subtree
+            dfs(node->right, false, length + 1, max_length); // Check left subtree
+            dfs(node->left, true, 1, max_length); // Check right subtree
+        } else { // Traversing left subtree
+            dfs(node->left, true, length + 1, max_length); // Check right subtree
+            dfs(node->right, false, 1, max_length); // Check left subtree
+        }
+    }
+};
