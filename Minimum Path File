@@ -1,0 +1,22 @@
+class Solution {
+public:
+    int minPathSum(vector<vector<int>>& grid) {
+        int columnSize = grid[0].size(); 
+        int rowSize = grid.size(); 
+        vector<vector<int>>table(rowSize, vector<int>(columnSize, 0)); 
+        table[0][0] = grid[0][0]; 
+        for(int i = 1; i < columnSize; i++){
+            table[0][i] = grid[0][i] + table[0][i-1]; 
+        }
+        for(int i = 1; i < rowSize; i++){
+            table[i][0] = grid[i][0] + table[i-1][0]; 
+        }
+
+        for(int i = 1; i < rowSize; i++){
+            for(int j = 1; j < columnSize; j++){
+                table[i][j] = grid[i][j] + min(table[i-1][j], table[i][j-1]); 
+            }
+        }
+        return table[rowSize-1][columnSize-1]; 
+    }
+};
