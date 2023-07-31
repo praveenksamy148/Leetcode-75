@@ -1,0 +1,17 @@
+class Solution {
+public:
+    int lastRemaining(int n) {
+        bool left=true;
+       int head=1,step=1;
+       while(n>1){
+           if(left || n&1){//left to right or odd numbers then head shift
+                head+=step;
+           }
+           step*=2;//every time strp has 2
+           n/=2;//every time n is halfed
+           left=!left; // means convert left to right and vice-versa
+       }
+
+       return head;
+    }
+};
