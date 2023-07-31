@@ -1,0 +1,18 @@
+class Solution {
+public:
+    int hIndex(vector<int>& citations) {
+        int low = 0, high = citations.size() -1, sol = 0;  
+        while(low <= high){
+            int mid = (low + high) / 2; 
+            int index = citations.size() - mid; 
+            if(citations[mid] >= index){
+                sol = index; 
+                high = mid -1; 
+            }else{
+                low = mid + 1; 
+            }
+        }
+        return sol;
+
+    }
+};
