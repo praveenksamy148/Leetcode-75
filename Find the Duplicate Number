@@ -1,0 +1,17 @@
+class Solution {
+public:
+    int findDuplicate(vector<int>& nums) {
+        map<int,int>duplicate; 
+        for(int i = 0; i < nums.size(); i++){
+            duplicate[nums[i]]++;
+        }
+        int sol;
+        for(auto it : duplicate){
+            if(it.second >= 2){
+                sol = it.first;
+                break;
+            }
+        }
+        return sol; 
+    }
+};
