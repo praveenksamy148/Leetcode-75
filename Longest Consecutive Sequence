@@ -1,0 +1,26 @@
+class Solution {
+public:
+    int longestConsecutive(vector<int>& nums) {
+        set<int>unique; 
+        for(int i = 0; i < nums.size(); i++){
+            unique.insert(nums[i]); 
+        }
+        if(nums.size() == 0){
+            return 0; 
+        }
+        nums.clear();
+        for(auto it : unique){
+            nums.push_back(it);
+        } 
+        int length = 1, tempLength = 1; 
+        for(int i = 1; i < unique.size(); i++){
+            if(nums[i] - nums[i-1] == 1){
+                tempLength++; 
+                length = max(length, tempLength); 
+            } else{
+                tempLength = 1; 
+            }
+        }
+        return length; 
+    }
+};
