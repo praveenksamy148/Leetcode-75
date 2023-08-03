@@ -1,0 +1,25 @@
+class Solution {
+public:
+    vector<int> topKFrequent(vector<int>& nums, int k) {
+        map<int,int>frequent; 
+        multimap<int, int, greater<int>>reverse; 
+        for(auto it: nums){
+            frequent[it]++;
+        }
+        for(auto x : frequent){
+            reverse.insert({x.second, x.first});
+        }
+        int count = 0; 
+        vector<int>sol; 
+        for(auto it: reverse){
+            if(count < k){
+                sol.push_back(it.second); 
+                count++;
+            } else{
+                break;
+            }
+        }
+        return sol;
+
+    }
+};
